@@ -2,35 +2,30 @@ version: "3.8"  # Versão da sintaxe do Compose
 
 services:
   app:
-    build: 
-      context: .   # Caminho para o Dockerfile e código da aplicação
-    image: seuusuario/docker-api-fast:latest   # Nome da imagem da aplicação (substitua "seuusuario" pelo seu Docker Hub)
-    container_name: api_fastapi    # Nome do contêiner (opcional, para fácil identificação)
+    image: luizdurand/api-fastapi-nuvem:latest
+    container_name: api_fastapi
     ports:
-      - "8080:8080"     # Mapear porta 8080 do host para porta 8080 do contêiner
+      - "8080:8080"
     environment:
-      # Variáveis de ambiente para configurar a aplicação/DB
       DB_HOST: db
       DB_PORT: 5432
-      POSTGRES_DB: ${POSTGRES_DB:-projeto}         # nome do BD (default "projeto")
-      POSTGRES_USER: ${POSTGRES_USER:-projeto}     # usuário do BD (default "projeto")
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-projeto} # senha do BD (default "projeto")
-      # (Opcional) Segredo JWT e outras configs poderiam ser passadas aqui
+      POSTGRES_DB: projeto
+      POSTGRES_USER: projeto
+      POSTGRES_PASSWORD: projeto
     depends_on:
-      - db   # Garante que o serviço db suba antes da app
+      - db
 
   db:
-    image: postgres:15          # Imagem oficial do PostgreSQL (versão 15)
-    container_name: db_postgres # Nome do contêiner do banco
+    image: postgres:15
+    container_name: db_postgres
     ports:
-      - "5432:5432"             # Porta do Postgres exposta (não exponha em prod, aqui é só para dev/debug)
+      - "5432:5432"
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-projeto}
-      POSTGRES_USER: ${POSTGRES_USER:-projeto}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-projeto}
+      POSTGRES_DB: projeto
+      POSTGRES_USER: projeto
+      POSTGRES_PASSWORD: projeto
     volumes:
-      - db_data:/var/lib/postgresql/data  # Volume para persistência dos dados do banco
+      - db_data:/var/lib/postgresql/data
 
-# Definição de volumes (para dados do Postgres não se perderem ao remover contêiner)
 volumes:
   db_data:

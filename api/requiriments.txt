@@ -4,3 +4,5 @@ pydantic                # já vem como dependência do FastAPI (usado para model
 python-jose[cryptography]  # para gerar/validar JWT (ex.: uso futuro)
 passlib[bcrypt]            # para hash de senha (ex.: uso futuro)
 psycopg2-binary            # driver PostgreSQL (ex.: uso futuro para conectar ao DB)
+passlib[bcrypt]
+python-jose[cryptography]

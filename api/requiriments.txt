@@ -1,8 +1,9 @@
 fastapi
 uvicorn[standard]       # servidor ASGI para rodar a FastAPI
 pydantic                # já vem como dependência do FastAPI (usado para modelos)
-python-jose[cryptography]  # para gerar/validar JWT (ex.: uso futuro)
-passlib[bcrypt]            # para hash de senha (ex.: uso futuro)
-psycopg2-binary            # driver PostgreSQL (ex.: uso futuro para conectar ao DB)
+python-jose[cryptography]  # para gerar/validar JWT 
+passlib[bcrypt]            # para hash de senha 
+psycopg2-binary            # driver PostgreSQL 
 passlib[bcrypt]
-python-jose[cryptography]
+SQLAlchemy
+pymysql

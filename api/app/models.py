@@ -8,9 +8,9 @@ from app.schemas import Usuario
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
-    nome = Column(String, nullable=False)
-    email = Column(String, unique=True, index=True, nullable=False)
-    senha = Column(String, nullable=False)  # já será o hash
+    nome = Column(String(255), nullable=False)
+    email = Column(String(255), unique=True, index=True, nullable=False)
+    senha = Column(String(255), nullable=False)  # já será o hash
 
 # funções de CRUD:
 

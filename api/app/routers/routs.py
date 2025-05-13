@@ -7,6 +7,7 @@ from app import models
 from app.core.security import create_access_token, decode_access_token
 from app.core.database import get_db
 
+
 router = APIRouter()
 bearer_scheme = HTTPBearer()
 

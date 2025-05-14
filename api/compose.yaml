@@ -1,33 +1,30 @@
-version: "3.8"
-
 services:
   db:
     image: mysql:8.0
-    container_name: mysql_projeto
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: p_cloud
       MYSQL_USER: cloud
       MYSQL_PASSWORD: cloud-n123
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-ucloud", "-pcloud-n123"]
+      test: ["CMD","mysqladmin","ping","-h","localhost","-ucloud","-pcloud-n123"]
       interval: 5s
       retries: 5
-      timeout: 2s
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: luizdurand/api-fastapi-nuvem:latest
-    container_name: api_fastapi
-    ports:
-      - "8080:8080"
     environment:
       DATABASE_URL: mysql+pymysql://cloud:cloud-n123@db:3306/p_cloud
       SECRET_KEY: troque_isto_por_uma_chave_secreta
+    ports:
+      - "8080:8080"
     depends_on:
       db:
         condition: service_healthy

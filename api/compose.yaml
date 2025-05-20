@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     image: luizdurand/api-fastapi-nuvem:latest
     environment:
-      DATABASE_URL: mysql+pymysql://cloud:cloud-n123@db:3306/p_cloud
+      DATABASE_URL: mysql+pymysql://cloud:cloud-n123@172.16.0.152:3306/p_cloud
       SECRET_KEY: troque_isto_por_uma_chave_secreta
     ports:
       - "8080:8080"
